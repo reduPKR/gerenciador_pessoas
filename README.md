@@ -28,4 +28,6 @@ Este é um projeto de exemplo para um sistema de gerenciamento de pessoas. Ele p
 - Listar todas as pessoas cadastradas.  
 - Listar endereços de uma pessoa.  
 
-## Testes unitarios
+## Testes unitarios  
+
+![image](https://github.com/reduPKR/gerenciador_pessoas/assets/56879793/89bc532a-3eae-4cbb-9c2c-f588b99d829b)
