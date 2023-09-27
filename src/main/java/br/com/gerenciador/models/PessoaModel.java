@@ -3,7 +3,6 @@ package br.com.gerenciador.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -34,17 +33,32 @@ public class PessoaModel {
         this.dataNascimento = dataNascimento;
     }
 
-    public PessoaModel(String nome, LocalDate dataNascimento, Set<EnderecoModel> enderecos) {
+    public PessoaModel(Long id, String nome, LocalDate dataNascimento) {
+        this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.enderecos = enderecos;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
     public Set<EnderecoModel> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Set<EnderecoModel> enderecos) {
-        this.enderecos = enderecos;
+    public void addEndereco(EnderecoModel endereco) {
+        this.enderecos.add(endereco);
     }
+
 }

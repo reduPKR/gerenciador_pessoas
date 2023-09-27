@@ -2,7 +2,6 @@ package br.com.gerenciador.models;
 
 import br.com.gerenciador.enums.TipoLogradouro;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "endereco")
@@ -40,6 +39,36 @@ public class EnderecoModel {
         this.numero = numero;
         this.cidade = cidade;
         this.enderecoPrincipal = enderecoPrincipal;
+        this.pessoa = pessoa;
+    }
+
+    public EnderecoModel(Long id, TipoLogradouro logradouro, String cep, String numero, String cidade, boolean enderecoPrincipal, PessoaModel pessoa) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.cep = cep;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.enderecoPrincipal = enderecoPrincipal;
+        this.pessoa = pessoa;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public boolean isEnderecoPrincipal() {
+        return enderecoPrincipal;
+    }
+
+    public void setEnderecoPrincipal(boolean enderecoPrincipal) {
+        this.enderecoPrincipal = enderecoPrincipal;
+    }
+
+    public PessoaModel getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(PessoaModel pessoa) {
         this.pessoa = pessoa;
     }
 }
