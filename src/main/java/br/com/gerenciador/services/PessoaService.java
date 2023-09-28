@@ -5,6 +5,8 @@ import br.com.gerenciador.models.PessoaModel;
 import br.com.gerenciador.repository.EnderecoRepository;
 import br.com.gerenciador.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

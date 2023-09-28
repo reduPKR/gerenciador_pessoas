@@ -28,7 +28,7 @@ public class PessoaMapperCadastro {
         return pessoaModel;
     }
 
-    private EnderecoModel convertToModel(EnderecoCadastroRequest request, PessoaModel pessoa) {
+    public EnderecoModel convertToModel(EnderecoCadastroRequest request, PessoaModel pessoa) {
         EnderecoModel enderecoModel = new EnderecoModel();
         enderecoModel.setLogradouro(request.getLogradouro());
         enderecoModel.setCep(request.getCep());
@@ -56,7 +56,7 @@ public class PessoaMapperCadastro {
         return pessoaResponse;
     }
 
-    private EnderecoCadastroResponse convertToResponse(EnderecoModel enderecoModel) {
+    public EnderecoCadastroResponse convertToResponse(EnderecoModel enderecoModel) {
         EnderecoCadastroResponse enderecoResponse = new EnderecoCadastroResponse();
         enderecoResponse.setId(enderecoModel.getId());
         enderecoResponse.setLogradouro(enderecoModel.getLogradouro());

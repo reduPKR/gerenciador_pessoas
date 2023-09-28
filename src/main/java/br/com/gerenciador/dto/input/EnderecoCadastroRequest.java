@@ -2,11 +2,12 @@ package br.com.gerenciador.dto.input;
 
 import br.com.gerenciador.enums.TipoLogradouro;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EnderecoCadastroRequest {
-    @NotEmpty
+    @NotNull
     private TipoLogradouro logradouro;
     @NotEmpty
     private String cep;
@@ -14,7 +15,7 @@ public class EnderecoCadastroRequest {
     private String numero;
     @NotEmpty
     private String cidade;
-    @NotEmpty
+    @NotNull
     private boolean enderecoPrincipal;
 
     public EnderecoCadastroRequest() {

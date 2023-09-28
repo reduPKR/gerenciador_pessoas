@@ -99,7 +99,7 @@ class PessoaControllerGetTest {
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(visualizacaoResponses, responseEntity.getBody());
-        
+
         verify(pessoaService, times(1)).listarPessoas();
         verify(pessoaMapperVisualizacao, times(pessoas.size())).convertToResponse(any());
     }

@@ -22,7 +22,7 @@ public class PessoaModel {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EnderecoModel> enderecos = new HashSet<>();
 
     public PessoaModel() {
