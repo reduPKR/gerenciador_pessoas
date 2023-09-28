@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -65,5 +67,40 @@ class PessoaControllerGetTest {
 
         verify(pessoaService, times(1)).consultarPessoa(id);
         verify(pessoaMapperVisualizacao, never()).convertToResponse(any());
+    }
+
+    @Test
+    void deve_retornar_lista_de_pessoas() {
+        List<PessoaModel> pessoas = new ArrayList<>();
+        pessoas.add(new PessoaModel(1L, "Rafael", LocalDate.of(1993, 1, 15)));
+        pessoas.add(new PessoaModel(2L, "Eduardo", LocalDate.of(1994, 3, 20)));
+        pessoas.add(new PessoaModel(3L, "Sara", LocalDate.of(1995, 5, 10)));
+        pessoas.add(new PessoaModel(4L, "Juliane", LocalDate.of(1996, 7, 25)));
+        pessoas.add(new PessoaModel(5L, "Enrique", LocalDate.of(1997, 9, 5)));
+        pessoas.add(new PessoaModel(6L, "Nicolas", LocalDate.of(1998, 11, 30)));
+
+        List<PessoaVisualizacaoResponse> visualizacaoResponses = new ArrayList<>();
+        for (PessoaModel pessoa : pessoas) {
+            visualizacaoResponses.add(new PessoaVisualizacaoResponse(pessoa.getId(), pessoa.getNome(), pessoa.getDataNascimento()));
+        }
+
+        when(pessoaService.listarPessoas()).thenReturn(pessoas);
+        when(pessoaMapperVisualizacao.convertToResponse(any())).thenAnswer(invocation -> {
+            PessoaModel pessoa = invocation.getArgument(0);
+            for (PessoaVisualizacaoResponse response : visualizacaoResponses) {
+                if (response.getId().equals(pessoa.getId())) {
+                    return response;
+                }
+            }
+            return null;
+        });
+
+        ResponseEntity<List<PessoaVisualizacaoResponse>> responseEntity = pessoaControllerGet.listarPessoas();
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(visualizacaoResponses, responseEntity.getBody());
+        
+        verify(pessoaService, times(1)).listarPessoas();
+        verify(pessoaMapperVisualizacao, times(pessoas.size())).convertToResponse(any());
     }
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaControllerGet {
@@ -34,6 +37,15 @@ public class PessoaControllerGet {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PessoaVisualizacaoResponse>> listarPessoas() {
+        List<PessoaModel> pessoas = pessoaService.listarPessoas();
+        List<PessoaVisualizacaoResponse> responses = pessoas.stream()
+                .map(pessoaMapper::convertToResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(responses, HttpStatus.OK);
     }
 
 }
