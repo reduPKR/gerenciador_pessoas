@@ -2,7 +2,9 @@ package br.com.gerenciador.dto.input;
 
 import br.com.gerenciador.enums.TipoLogradouro;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EnderecoCadastroRequest {
     @NotEmpty
     private TipoLogradouro logradouro;

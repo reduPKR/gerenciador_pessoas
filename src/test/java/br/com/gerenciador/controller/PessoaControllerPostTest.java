@@ -5,7 +5,7 @@ import br.com.gerenciador.dto.input.PessoaCadastroRequest;
 import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
 import br.com.gerenciador.dto.output.PessoaCadastroResponse;
 import br.com.gerenciador.enums.TipoLogradouro;
-import br.com.gerenciador.mapper.PessoaMapper;
+import br.com.gerenciador.mapper.PessoaMapperCadastro;
 import br.com.gerenciador.models.EnderecoModel;
 import br.com.gerenciador.models.PessoaModel;
 import br.com.gerenciador.services.PessoaService;
@@ -35,7 +35,7 @@ class PessoaControllerPostTest {
     private PessoaService pessoaService;
 
     @Mock
-    private PessoaMapper pessoaMapper;
+    private PessoaMapperCadastro pessoaMapperCadastro;
 
     @BeforeEach
     void setUp() {
@@ -52,18 +52,18 @@ class PessoaControllerPostTest {
         PessoaModel pessoaResponse = new PessoaModel(1L, "Rafael", dataNascimento);
         PessoaCadastroResponse pessoaCadastroResponse = new PessoaCadastroResponse(1L, "Rafael", dataNascimento);
 
-        when(pessoaMapper.convertToModel(request)).thenReturn(pessoaModel);
+        when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(pessoaResponse);
-        when(pessoaMapper.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
+        when(pessoaMapperCadastro.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
 
         ResponseEntity<PessoaCadastroResponse> responseEntity = pessoaControllerPost.cadastrarPessoa(request);
 
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        verify(pessoaMapper, times(1)).convertToModel(request);
+        verify(pessoaMapperCadastro, times(1)).convertToModel(request);
         verify(pessoaService, times(1)).cadastrarPessoa(pessoaModel);
-        verify(pessoaMapper, times(1)).convertToResponse(pessoaResponse);
+        verify(pessoaMapperCadastro, times(1)).convertToResponse(pessoaResponse);
     }
 
     @Test
@@ -88,17 +88,17 @@ class PessoaControllerPostTest {
         PessoaCadastroResponse pessoaCadastroResponse = new PessoaCadastroResponse(1L, "Rafael", dataNascimento);
         pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
 
-        when(pessoaMapper.convertToModel(request)).thenReturn(pessoaModel);
+        when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(pessoaResponse);
-        when(pessoaMapper.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
+        when(pessoaMapperCadastro.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
 
         ResponseEntity<PessoaCadastroResponse> responseEntity = pessoaControllerPost.cadastrarPessoa(request);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        verify(pessoaMapper, times(1)).convertToModel(request);
+        verify(pessoaMapperCadastro, times(1)).convertToModel(request);
         verify(pessoaService, times(1)).cadastrarPessoa(pessoaModel);
-        verify(pessoaMapper, times(1)).convertToResponse(pessoaResponse);
+        verify(pessoaMapperCadastro, times(1)).convertToResponse(pessoaResponse);
     }
 
     @Test
@@ -132,17 +132,17 @@ class PessoaControllerPostTest {
         pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
         pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(2L, TipoLogradouro.AVENIDA, "54321-876", "456", "Maringá", false));
 
-        when(pessoaMapper.convertToModel(request)).thenReturn(pessoaModel);
+        when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(pessoaResponse);
-        when(pessoaMapper.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
+        when(pessoaMapperCadastro.convertToResponse(pessoaResponse)).thenReturn(pessoaCadastroResponse);
 
         ResponseEntity<PessoaCadastroResponse> responseEntity = pessoaControllerPost.cadastrarPessoa(request);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        verify(pessoaMapper, times(1)).convertToModel(request);
+        verify(pessoaMapperCadastro, times(1)).convertToModel(request);
         verify(pessoaService, times(1)).cadastrarPessoa(pessoaModel);
-        verify(pessoaMapper, times(1)).convertToResponse(pessoaResponse);
+        verify(pessoaMapperCadastro, times(1)).convertToResponse(pessoaResponse);
     }
 
     @Test
@@ -153,14 +153,14 @@ class PessoaControllerPostTest {
         PessoaCadastroRequest request = new PessoaCadastroRequest("Rafael", dataNascimento, enderecos);
         PessoaModel pessoaModel = new PessoaModel("Rafael", dataNascimento);
 
-        when(pessoaMapper.convertToModel(request)).thenReturn(pessoaModel);
+        when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(null);
 
         ResponseEntity<PessoaCadastroResponse> responseEntity = pessoaControllerPost.cadastrarPessoa(request);
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
 
-        verify(pessoaMapper, times(1)).convertToModel(request);
+        verify(pessoaMapperCadastro, times(1)).convertToModel(request);
         verify(pessoaService, times(1)).cadastrarPessoa(pessoaModel);
     }
 }

@@ -13,8 +13,8 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PessoaMapperTest {
-    private final PessoaMapper mapper = new PessoaMapper();
+class PessoaMapperCadastroTest {
+    private final PessoaMapperCadastro mapper = new PessoaMapperCadastro();
 
     @Test
     void deve_converter_PessoaCadastroRequest_Para_PessoaModel() {

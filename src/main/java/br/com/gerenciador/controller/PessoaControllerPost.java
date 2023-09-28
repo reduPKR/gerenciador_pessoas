@@ -2,7 +2,7 @@ package br.com.gerenciador.controller;
 
 import br.com.gerenciador.dto.input.PessoaCadastroRequest;
 import br.com.gerenciador.dto.output.PessoaCadastroResponse;
-import br.com.gerenciador.mapper.PessoaMapper;
+import br.com.gerenciador.mapper.PessoaMapperCadastro;
 import br.com.gerenciador.models.PessoaModel;
 import br.com.gerenciador.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pessoas")
 public class PessoaControllerPost {
     private PessoaService service;
-    private PessoaMapper mapper;
+    private PessoaMapperCadastro mapper;
 
     @Autowired
-    public PessoaControllerPost(PessoaService service, PessoaMapper mapper) {
+    public PessoaControllerPost(PessoaService service, PessoaMapperCadastro mapper) {
         this.service = service;
         this.mapper = mapper;
     }

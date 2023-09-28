@@ -20,8 +20,8 @@ public class PessoaService {
         return pessoaRepository.save(pessoa);
     }
 
-    public Boolean editarPessoa(Long id, PessoaModel pessoa) {
-        PessoaModel pessoaModel = consultarPessoa(id);
+    public Boolean editarPessoa(PessoaModel pessoa) {
+        PessoaModel pessoaModel = consultarPessoa(pessoa.getId());
 
         if(pessoaModel != null && (
                 !Objects.equals(pessoaModel.getNome(), pessoa.getNome()) ||

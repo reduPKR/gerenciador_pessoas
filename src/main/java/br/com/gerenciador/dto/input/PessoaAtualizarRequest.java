@@ -1,32 +1,26 @@
 package br.com.gerenciador.dto.input;
 
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
-public class PessoaCadastroRequest {
+public class PessoaAtualizarRequest {
     @NotEmpty
     @Size(max = 100)
     private String nome;
     @NotNull
     private LocalDate dataNascimento;
 
-    private Set<EnderecoCadastroRequest> enderecos = new HashSet<>();
-
-    public PessoaCadastroRequest() {
+    public PessoaAtualizarRequest() {
     }
 
-    public PessoaCadastroRequest(String nome, LocalDate dataNascimento, Set<EnderecoCadastroRequest> enderecos) {
+    public PessoaAtualizarRequest(String nome, @NotNull LocalDate dataNascimento) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.enderecos = enderecos;
     }
 
     public String getNome() {
@@ -43,13 +37,5 @@ public class PessoaCadastroRequest {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public Set<EnderecoCadastroRequest> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(Set<EnderecoCadastroRequest> enderecos) {
-        this.enderecos = enderecos;
     }
 }

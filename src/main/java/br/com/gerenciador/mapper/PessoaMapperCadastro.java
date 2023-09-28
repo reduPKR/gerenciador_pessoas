@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
-public class PessoaMapper {
+public class PessoaMapperCadastro {
     public PessoaModel convertToModel(PessoaCadastroRequest request) {
         PessoaModel pessoaModel = new PessoaModel();
         pessoaModel.setNome(request.getNome());
@@ -20,7 +20,7 @@ public class PessoaMapper {
 
         Set<EnderecoModel> enderecoModels = request.getEnderecos()
                 .stream()
-                .map(this::convertToModel)
+                .map(enderecoRequest -> convertToModel(enderecoRequest, pessoaModel))
                 .collect(Collectors.toSet());
 
         pessoaModel.setEnderecos(enderecoModels);
@@ -28,13 +28,15 @@ public class PessoaMapper {
         return pessoaModel;
     }
 
-    private EnderecoModel convertToModel(EnderecoCadastroRequest request) {
+    private EnderecoModel convertToModel(EnderecoCadastroRequest request, PessoaModel pessoa) {
         EnderecoModel enderecoModel = new EnderecoModel();
         enderecoModel.setLogradouro(request.getLogradouro());
         enderecoModel.setCep(request.getCep());
         enderecoModel.setNumero(request.getNumero());
         enderecoModel.setCidade(request.getCidade());
         enderecoModel.setEnderecoPrincipal(request.isEnderecoPrincipal());
+        enderecoModel.setPessoa(pessoa);
+
         return enderecoModel;
     }
 
@@ -65,5 +67,4 @@ public class PessoaMapper {
 
         return enderecoResponse;
     }
-
 }

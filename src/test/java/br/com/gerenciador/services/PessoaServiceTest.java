@@ -49,7 +49,7 @@ class PessoaServiceTest {
 
         when(pessoaRepository.findById(1L)).thenReturn(Optional.of(pessoaCadastrada));
 
-        boolean result = pessoaService.editarPessoa(1L, pessoa);
+        boolean result = pessoaService.editarPessoa(pessoa);
 
         assertTrue(result);
     }
@@ -61,7 +61,7 @@ class PessoaServiceTest {
 
         when(pessoaRepository.findById(1L)).thenReturn(Optional.of(pessoaCadastrada));
 
-        boolean result = pessoaService.editarPessoa(1L, pessoa);
+        boolean result = pessoaService.editarPessoa(pessoa);
 
         assertTrue(result);
     }
@@ -71,7 +71,7 @@ class PessoaServiceTest {
         PessoaModel pessoa = new PessoaModel(2L,"Eduardo", LocalDate.of(1995, 2, 28));
         when(pessoaRepository.findById(1L)).thenReturn(Optional.empty());
 
-        boolean result = pessoaService.editarPessoa(1L, pessoa);
+        boolean result = pessoaService.editarPessoa(pessoa);
 
         assertFalse(result);
     }
