@@ -1,7 +1,7 @@
 package br.com.gerenciador.mapper;
 
 import br.com.gerenciador.dto.input.PessoaCadastroRequest;
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.dto.output.PessoaCadastroResponse;
 import br.com.gerenciador.enums.TipoLogradouro;
 import br.com.gerenciador.models.EnderecoModel;
@@ -42,7 +42,7 @@ class PessoaMapperCadastroTest {
         assertEquals(pessoaModel.getDataNascimento(), pessoaResponse.getDataNascimento());
         assertEquals(1, pessoaResponse.getEnderecos().size());
 
-        EnderecoCadastroResponse enderecoResponse = pessoaResponse.getEnderecos().iterator().next();
+        EnderecoResponse enderecoResponse = pessoaResponse.getEnderecos().iterator().next();
         EnderecoModel enderecoModel = pessoaModel.getEnderecos().iterator().next();
 
         assertEquals(enderecoModel.getId(), enderecoResponse.getId());

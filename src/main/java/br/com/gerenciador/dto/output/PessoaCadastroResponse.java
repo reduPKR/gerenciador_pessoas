@@ -11,7 +11,7 @@ public class PessoaCadastroResponse {
     private Long id;
     private String nome;
     private LocalDate dataNascimento;
-    private Set<EnderecoCadastroResponse> enderecos = new HashSet<>();
+    private Set<EnderecoResponse> enderecos = new HashSet<>();
 
     public PessoaCadastroResponse() {
     }
@@ -20,13 +20,6 @@ public class PessoaCadastroResponse {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-    }
-
-    public PessoaCadastroResponse(Long id, String nome, LocalDate dataNascimento, Set<EnderecoCadastroResponse> enderecos) {
-        this.id = id;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.enderecos = enderecos;
     }
 
     public Long getId() {
@@ -53,15 +46,15 @@ public class PessoaCadastroResponse {
         this.dataNascimento = dataNascimento;
     }
 
-    public Set<EnderecoCadastroResponse> getEnderecos() {
+    public Set<EnderecoResponse> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Set<EnderecoCadastroResponse> enderecos) {
+    public void setEnderecos(Set<EnderecoResponse> enderecos) {
         this.enderecos = enderecos;
     }
 
-    public void addEndereco(EnderecoCadastroResponse endereco) {
+    public void addEndereco(EnderecoResponse endereco) {
         this.enderecos.add(endereco);
     }
 }

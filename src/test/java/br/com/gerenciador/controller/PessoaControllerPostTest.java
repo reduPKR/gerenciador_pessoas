@@ -2,7 +2,7 @@ package br.com.gerenciador.controller;
 
 import br.com.gerenciador.dto.input.EnderecoCadastroRequest;
 import br.com.gerenciador.dto.input.PessoaCadastroRequest;
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.dto.output.PessoaCadastroResponse;
 import br.com.gerenciador.enums.TipoLogradouro;
 import br.com.gerenciador.mapper.PessoaMapperCadastro;
@@ -86,7 +86,7 @@ class PessoaControllerPostTest {
         pessoaResponse.addEndereco(new EnderecoModel(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true, pessoaResponse));
 
         PessoaCadastroResponse pessoaCadastroResponse = new PessoaCadastroResponse(1L, "Rafael", dataNascimento);
-        pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
+        pessoaCadastroResponse.addEndereco(new EnderecoResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
 
         when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(pessoaResponse);
@@ -129,8 +129,8 @@ class PessoaControllerPostTest {
         pessoaResponse.addEndereco(new EnderecoModel(2L, TipoLogradouro.AVENIDA, "54321-876", "456", "Maringá", false, pessoaResponse));
 
         PessoaCadastroResponse pessoaCadastroResponse = new PessoaCadastroResponse(1L, "Rafael", dataNascimento);
-        pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
-        pessoaCadastroResponse.addEndereco(new EnderecoCadastroResponse(2L, TipoLogradouro.AVENIDA, "54321-876", "456", "Maringá", false));
+        pessoaCadastroResponse.addEndereco(new EnderecoResponse(1L, TipoLogradouro.RUA, "12345-678", "123", "Presidente Prudente", true));
+        pessoaCadastroResponse.addEndereco(new EnderecoResponse(2L, TipoLogradouro.AVENIDA, "54321-876", "456", "Maringá", false));
 
         when(pessoaMapperCadastro.convertToModel(request)).thenReturn(pessoaModel);
         when(pessoaService.cadastrarPessoa(pessoaModel)).thenReturn(pessoaResponse);

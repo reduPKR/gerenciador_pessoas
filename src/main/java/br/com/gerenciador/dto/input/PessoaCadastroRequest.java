@@ -33,23 +33,13 @@ public class PessoaCadastroRequest {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public Set<EnderecoCadastroRequest> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Set<EnderecoCadastroRequest> enderecos) {
-        this.enderecos = enderecos;
-    }
 }

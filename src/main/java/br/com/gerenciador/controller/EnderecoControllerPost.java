@@ -1,7 +1,7 @@
 package br.com.gerenciador.controller;
 
 import br.com.gerenciador.dto.input.EnderecoCadastroRequest;
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.mapper.PessoaMapperCadastro;
 import br.com.gerenciador.models.EnderecoModel;
 import br.com.gerenciador.services.PessoaService;
@@ -24,7 +24,7 @@ public class EnderecoControllerPost {
     }
 
     @PostMapping("/{id}/endereco")
-    public ResponseEntity<EnderecoCadastroResponse> cadastrarEndereco(
+    public ResponseEntity<EnderecoResponse> cadastrarEndereco(
             @PathVariable Long id,
             @RequestBody @Validated EnderecoCadastroRequest request
     ) {
@@ -32,10 +32,10 @@ public class EnderecoControllerPost {
         EnderecoModel responseModel = service.criarEndereco(id, enderecoModel);
 
         if (responseModel != null && responseModel.getId() != null){
-            EnderecoCadastroResponse response = mapper.convertToResponse(responseModel);
+            EnderecoResponse response = mapper.convertToResponse(responseModel);
 
-            return new ResponseEntity<EnderecoCadastroResponse>(response, HttpStatus.CREATED);
+            return new ResponseEntity<EnderecoResponse>(response, HttpStatus.CREATED);
         }
-        return new ResponseEntity<EnderecoCadastroResponse>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<EnderecoResponse>(HttpStatus.BAD_REQUEST);
     }
 }

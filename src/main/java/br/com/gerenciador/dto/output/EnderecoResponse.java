@@ -4,7 +4,7 @@ import br.com.gerenciador.enums.TipoLogradouro;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EnderecoCadastroResponse {
+public class EnderecoResponse {
     private Long id;
     private TipoLogradouro logradouro;
     private String cep;
@@ -12,10 +12,10 @@ public class EnderecoCadastroResponse {
     private String cidade;
     private boolean enderecoPrincipal;
 
-    public EnderecoCadastroResponse() {
+    public EnderecoResponse() {
     }
 
-    public EnderecoCadastroResponse(Long id, TipoLogradouro logradouro, String cep, String numero, String cidade, boolean enderecoPrincipal) {
+    public EnderecoResponse(Long id, TipoLogradouro logradouro, String cep, String numero, String cidade, boolean enderecoPrincipal) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;

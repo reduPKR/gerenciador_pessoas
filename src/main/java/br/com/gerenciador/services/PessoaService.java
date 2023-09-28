@@ -5,8 +5,6 @@ import br.com.gerenciador.models.PessoaModel;
 import br.com.gerenciador.repository.EnderecoRepository;
 import br.com.gerenciador.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,6 +28,8 @@ public class PessoaService {
                         pessoaModel.getDataNascimento() != pessoa.getDataNascimento()
                 )
         ){
+            pessoa.setEnderecos(pessoaModel.getEnderecos());
+
             pessoaRepository.save(pessoa);
             return true;
         }
@@ -71,13 +71,13 @@ public class PessoaService {
         return Collections.emptySet();
     }
 
-    private EnderecoModel consultaEndereço(Long ederecoId){
+    public EnderecoModel consultaEndereco(Long ederecoId){
         return enderecoRepository.findById(ederecoId).orElse(null);
     }
 
     public Boolean cadastrarEnderecoPrincipal(Long pessoaId,Long ederecoId) {
         PessoaModel pessoa = consultarPessoa(pessoaId);
-        EnderecoModel endereco = consultaEndereço(ederecoId);
+        EnderecoModel endereco = consultaEndereco(ederecoId);
 
         if (
                 pessoa != null &&
@@ -95,6 +95,7 @@ public class PessoaService {
                              }
                     });
 
+            pessoaRepository.save(pessoa);
             return true;
         }
         return false;

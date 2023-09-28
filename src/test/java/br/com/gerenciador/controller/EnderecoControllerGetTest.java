@@ -1,11 +1,10 @@
 package br.com.gerenciador.controller;
 
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.enums.TipoLogradouro;
 import br.com.gerenciador.mapper.PessoaMapperCadastro;
 import br.com.gerenciador.models.EnderecoModel;
 import br.com.gerenciador.services.PessoaService;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,11 +49,11 @@ class EnderecoControllerGetTest {
 
         when(pessoaService.listarEnderecos(pessoaId)).thenReturn(enderecoModels);
 
-        Set<EnderecoCadastroResponse> enderecoResponses = enderecoModels.stream()
+        Set<EnderecoResponse> enderecoResponses = enderecoModels.stream()
                 .map(pessoaMapperCadastro::convertToResponse)
                 .collect(Collectors.toSet());
 
-        ResponseEntity<Set<EnderecoCadastroResponse>> responseEntity = enderecoControllerGet.getEnderecosByPessoaId(pessoaId);
+        ResponseEntity<Set<EnderecoResponse>> responseEntity = enderecoControllerGet.getEnderecosByPessoaId(pessoaId);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(enderecoResponses, responseEntity.getBody());
@@ -68,7 +67,7 @@ class EnderecoControllerGetTest {
 
         when(pessoaService.listarEnderecos(pessoaId)).thenReturn(Collections.emptySet());
 
-        ResponseEntity<Set<EnderecoCadastroResponse>> responseEntity = enderecoControllerGet.getEnderecosByPessoaId(pessoaId);
+        ResponseEntity<Set<EnderecoResponse>> responseEntity = enderecoControllerGet.getEnderecosByPessoaId(pessoaId);
 
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
         assertNull(responseEntity.getBody());

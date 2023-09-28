@@ -2,7 +2,7 @@ package br.com.gerenciador.mapper;
 
 import br.com.gerenciador.dto.input.EnderecoCadastroRequest;
 import br.com.gerenciador.dto.input.PessoaCadastroRequest;
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.dto.output.PessoaCadastroResponse;
 import br.com.gerenciador.models.EnderecoModel;
 import br.com.gerenciador.models.PessoaModel;
@@ -46,7 +46,7 @@ public class PessoaMapperCadastro {
         pessoaResponse.setNome(pessoaModel.getNome());
         pessoaResponse.setDataNascimento(pessoaModel.getDataNascimento());
 
-        Set<EnderecoCadastroResponse> enderecoResponses = pessoaModel.getEnderecos()
+        Set<EnderecoResponse> enderecoResponses = pessoaModel.getEnderecos()
                 .stream()
                 .map(this::convertToResponse)
                 .collect(Collectors.toSet());
@@ -56,8 +56,8 @@ public class PessoaMapperCadastro {
         return pessoaResponse;
     }
 
-    public EnderecoCadastroResponse convertToResponse(EnderecoModel enderecoModel) {
-        EnderecoCadastroResponse enderecoResponse = new EnderecoCadastroResponse();
+    public EnderecoResponse convertToResponse(EnderecoModel enderecoModel) {
+        EnderecoResponse enderecoResponse = new EnderecoResponse();
         enderecoResponse.setId(enderecoModel.getId());
         enderecoResponse.setLogradouro(enderecoModel.getLogradouro());
         enderecoResponse.setCep(enderecoModel.getCep());

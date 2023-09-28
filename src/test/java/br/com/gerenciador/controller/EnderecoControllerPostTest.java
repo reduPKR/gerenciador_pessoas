@@ -1,7 +1,7 @@
 package br.com.gerenciador.controller;
 
 import br.com.gerenciador.dto.input.EnderecoCadastroRequest;
-import br.com.gerenciador.dto.output.EnderecoCadastroResponse;
+import br.com.gerenciador.dto.output.EnderecoResponse;
 import br.com.gerenciador.enums.TipoLogradouro;
 import br.com.gerenciador.mapper.PessoaMapperCadastro;
 import br.com.gerenciador.models.EnderecoModel;
@@ -60,16 +60,16 @@ class EnderecoControllerPostTest {
         );
         when(pessoaService.criarEndereco(pessoaId, enderecoModel)).thenReturn(enderecoResponse);
 
-        EnderecoCadastroResponse enderecoCadastroResponse = new EnderecoCadastroResponse(
+        EnderecoResponse enderecoCadastroResponse = new EnderecoResponse(
                 1L, TipoLogradouro.RUA, "12345-678", "123", "São Paulo", true
         );
         when(pessoaMapperCadastro.convertToResponse(enderecoResponse)).thenReturn(enderecoCadastroResponse);
 
-        ResponseEntity<EnderecoCadastroResponse> responseEntity = enderecoControllerPost.cadastrarEndereco(pessoaId, request);
+        ResponseEntity<EnderecoResponse> responseEntity = enderecoControllerPost.cadastrarEndereco(pessoaId, request);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        EnderecoCadastroResponse responseBody = responseEntity.getBody();
+        EnderecoResponse responseBody = responseEntity.getBody();
         assertNotNull(responseBody);
         assertEquals(1L, responseBody.getId().longValue());
         assertEquals(TipoLogradouro.RUA, responseBody.getLogradouro());
@@ -95,7 +95,7 @@ class EnderecoControllerPostTest {
 
         when(pessoaService.criarEndereco(pessoaId, enderecoModel)).thenReturn(null);
 
-        ResponseEntity<EnderecoCadastroResponse> responseEntity = enderecoControllerPost.cadastrarEndereco(pessoaId, request);
+        ResponseEntity<EnderecoResponse> responseEntity = enderecoControllerPost.cadastrarEndereco(pessoaId, request);
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         assertNull(responseEntity.getBody());
