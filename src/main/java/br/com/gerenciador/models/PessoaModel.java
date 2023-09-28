@@ -39,6 +39,17 @@ public class PessoaModel {
         this.dataNascimento = dataNascimento;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setEnderecos(Set<EnderecoModel> enderecos) {
+        this.enderecos = enderecos;
+    }
 
     public Long getId() {
         return id;
@@ -47,7 +58,6 @@ public class PessoaModel {
     public String getNome() {
         return nome;
     }
-
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
